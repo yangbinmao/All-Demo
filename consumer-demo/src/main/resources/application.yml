@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: consumer-server
+  server:
+    port: 8088
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+    fetch-registry: true #要不要从eureka服务中心拉取所以列表，默认为true
+    registry-fetch-interval-seconds: 30 #每30s去服务中心拉取一次列表
+
+##直接引用ribbon包的配置方式：修改ribbon的负载均衡策略
+#user-server:
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule # 当前是要修改为随机，默认是轮询
+
+
+
+# 使用Feign包中ribbon（负载均衡）的配置方式
+ribbon:
+  ConnectionTimeOut: 500 #连接超时时长，默认是1s--1000  如果5毫秒没有建立连接，就抛出异常
+  ReadTimeOut: 2000 #读取超时时长，默认是1s--1000  如果建立连接但是2s没有响应，就抛出异常
+#使用Feign包中hystrix（熔断降级）的配置方式
+feign: #开启feign的熔断降级功能，默认是关闭的
+  hystrix:
+    enabled: true
+
+
+#直接引用hystrix包的配置方式：时无误异常就熔断降级
+#hystrix: #设置hystrix
+#  command: #设置它的指令
+#    default: #设置全局默认的配置
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds:3000   #设置全局的hystrix等待响应的延时时间
+#    user-server: #只针对user—server这个服务，只针对某个服务，就写这个服务的名字。
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds:5000   #设置针对这个服务的hystrix等待响应的延时时间

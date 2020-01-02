@@ -1,0 +1,31 @@
+#配置端口号
+server:
+  port: 10010
+#配置服务的名字
+spring:
+  application:
+    name: zuul-gateway
+#将服务注册进入Eureka注册中心
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:10086/eureka
+
+#配置网关的相关信息。
+zuul:
+  routes: #下面这个就是默认配置，也就是说其实可以不用配置的。
+    user-server: /user-server/**  #默认配置格式就是这样的。
+#    user-server: /user/**   这个就是自己设置的样式
+  ignored-services: #忽略这个服务，也就是不能这样去访问这个服务。
+#    - consumer-server
+hystrix: #设置hystrix
+  command: #设置它的指令
+    default: #设置全局默认的配置
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds:3000   #设置全局的hystrix等待响应的延时时间
+ribbon: #注意：ribbon的时长不能超过hystrix的时长
+        #timeoutInMilliseconds>=(ConnectionTimeout+ReadTimeout)*2
+  ConnectionTimeout: 500 #连接超时时长，默认是1s--1000  如果5毫秒没有建立连接，就抛出异常
+  ReadTimeout: 1000 #读取超时时长，默认是1s--1000  如果建立连接但是2s没有响应，就抛出异常

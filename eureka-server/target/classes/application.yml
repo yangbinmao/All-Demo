@@ -1,0 +1,19 @@
+#设置服务的端口地址
+server:
+  port: 10086
+#设置服务的默认名称
+spring:
+  application:
+    name: eureak-server
+#因为eureka是集群布置，现在我们本地只有一个，所以他会报一个找不到其他的端口的错误。
+#它既是服务端，也是客户端，避免报错，所以把它自己注册给自己
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka  #,http://127.0.0.1:10087/eureka  如果有多个注册中心就把地址加进去
+    register-with-eureka: false #设置当前服务是否要注册到eureka
+# instance:
+#  prefer-ip-address: true   #希望使用ip地址
+#  ip-address: 127.0.0.1     #设置ip地址为127.0.0.1
+  server:
+    eviction-interval-timer-in-ms: 60000 #eureka检测到服务挂了后（默认是心跳后90s没有在心跳，就会过默认60s后，在注册中心删除所有挂了的服务）
