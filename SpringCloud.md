@@ -25,6 +25,11 @@
             <artifactId>commons-lang3</artifactId>
              <version>3.9</version>
         </dependency>
+ <!--spring整合的loggin日志集合-->
+   		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-loggin</artifactId>
+        </dependency>
 ```
 
 # 一些坑

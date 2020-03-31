@@ -47,11 +47,13 @@
             <!--springcloud-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-clould-dependencies</artifactId>
+                <artifactId>spring-cloud-dependencies</artifactId>
                 <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+
 
             <!--  jpa-->
             <dependency>
