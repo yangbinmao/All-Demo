@@ -33,7 +33,7 @@
         <spring-cloud.version>Finchley.SR1</spring-cloud.version>
         <mapper.starter.version>2.0.3</mapper.starter.version>
         <mysql.version>5.1.42</mysql.version>
-        <json.alibaba.version>1.2.62</json.alibaba.version>
+        <json.alibaba.version>1.2.83</json.alibaba.version>
         <spring-data-jpa.version>2.0.4.RELEASE</spring-data-jpa.version>
     </properties>
 
